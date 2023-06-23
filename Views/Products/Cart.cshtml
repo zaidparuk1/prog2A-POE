@@ -1,0 +1,58 @@
+﻿@model progPart2.Models.Products
+
+
+<h1>  @Html.DisplayFor(model => model.ProductName)</h1>
+
+<div>
+    @{
+        var base64 = Convert.ToBase64String(Model.ProductImage);
+        var ImgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    <img src="@ImgSrc" height="360" width="360" />
+
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            description
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductDesc)
+        </dd>
+
+
+        <dt class="col-sm-2">
+            Price
+        </dt>
+        <dd class="col-sm-10">
+            R @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt class="col-sm-2">
+            category
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Productcategory)
+        </dd>
+    </dl>
+
+</div>
+<div>
+    @if (@ViewBag.UserName == null)
+    {
+        <p> User need to login</p>
+    }
+    else
+    {
+        <form asp-controller="Products" asp-action="Purchase">
+            <p>
+                <input type="submit" value="buy" />
+            </p>
+        </form>
+
+    }
+
+
+</div>
+<div>
+    <a asp-action="Items">Back to List</a>
+</div>

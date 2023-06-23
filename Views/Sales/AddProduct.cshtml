@@ -1,0 +1,58 @@
+﻿@model progPart2.Models.Products
+@{
+    ViewBag.Title = "Add New Product";
+}
+
+<br />
+<br />
+<div>
+    <a href="@Url.Action("Get", "Home")">Product Details</a>
+</div>
+
+<div>
+
+    {
+        <fieldset>
+            <legend>Product</legend>
+            <body style="background-color:lightsteelblue;">
+            </body>
+            <ol>
+                <li style="padding-left:1em">
+                    <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                        <label>Product Name</label>
+                    </p>
+                    <input type="text" name="productName" required="required"
+                           value="@Model.ProductName" />
+                </li>
+                <li style="padding-left:1em">
+                    <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                        <label>Product Description</label>
+                    </p>
+                    <input type="text" name="productDesc" required="required"
+                           value="@Model.ProductId" />
+                </li>
+                <li style="padding-left:1em">
+                    <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                        <label>Product Description</label>
+                    </p>
+                    <input type="text" name="productDesc" required="required"
+                           value="@Model.ProductDesc" />
+                </li>
+                <li style="padding-left:1em">
+                    <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic; ">
+                        <label>Product Price</label>
+                    </p>
+                    <input type="text" name="productPrice" required="required"
+                           value="@Model.ProductPrice" />
+                </li>
+                <li style=" padding-left: 1em">
+                    <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                        <label>Product Picture</label>
+                    </p>
+                    <input type="file" name="uploadFile" />
+                </li>
+            </ol>
+            <input type="submit" value="Submit" />
+        </fieldset>
+    }
+</div>

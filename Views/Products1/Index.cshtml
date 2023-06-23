@@ -1,0 +1,68 @@
+﻿@model IEnumerable<progPart2.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<<body style="background-image: url('@Url.Content("~/pics1/bgimage.png")');>
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Productcategory)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductDesc)
+                    </td>
+                    <td>
+                        @{
+                            var base64 = Convert.ToBase64String(item.ProductImage);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src="@imgSrc" height="180" width="340" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Productcategory)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </body>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<progPart2.Models.Products>
+<body style="background-image: url('@Url.Content("~/pics1/bgimage.png")');>
+    <div class="container">
+        <h1 class="my-4">Welcome to my prototype website for an ecommerce website </h1>
+        <div class="row">
+
+            <div class="col"><p>please note that this is not the finsih product this is to check to see if all the functions are working</p></div>
+        </div>
+    </div>
+    <form asp-controller="Products" asp-action="Items">
+        <p>
+            Title: <input type="Search" name="SearchString">
+            <input type="submit" value="search" />
+        </p>
+    </form>
+    <div class="card-deck">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h1>@item.ProductName</h1>
+                </div>
+                <td>
+                    @{
+                        var base64 = Convert.ToBase64String(item.ProductImage);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src="@imgSrc" height="180" width="340" />
+                </td>
+
+                <div class="card-body">
+                    <h5 class="card-title"> R @item.ProductPrice</h5>
+                    <p>@item.ProductDesc</p>
+
+
+                    <a asp-action="AddToCart" asp-route-id="@item.ProductId">Add to cart</a>
+                </div>
+                <div class="card-footer text-muted">
+                    @Html.DisplayFor(modelItem => item.Productcategory)
+                </div>
+            </div>
+
+
+
+
+        }
+
+    </div>
+
+
+
+
+
+    <style>
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+    </style>
+</body>
